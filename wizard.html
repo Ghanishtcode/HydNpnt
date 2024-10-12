@@ -1,0 +1,1003 @@
+<!doctype html>
+<html lang="en" style="zoom: 90%;">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Bootstrap4 Dashboard Template">
+	<meta name="author" content="ParkerThemes">
+	<link rel="shortcut icon" href="img/fav.png" />
+	<title>Proctle & Gamble</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="fonts/style.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="vendor/daterange/daterange.css" />
+	<link rel="stylesheet" href="vendor/wizard/jquery.steps.css" />
+	<style>
+		.highlight {
+			background-color: yellow;
+		}
+
+		.content-wrapper {
+			height: 92vh;
+		}
+
+		.copy-btn {
+			position: absolute;
+			right: 10px;
+			top: 10px;
+		}
+
+		.content,
+		clearfix {
+			height: 65vh;
+			overflow: auto;
+		}
+
+		.td>div {
+			width: 100% !important;
+		}
+	</style>
+	<style>
+		/* Basic styles for the toast notification */
+		.toast {
+			visibility: hidden;
+			/* Hidden by default */
+			min-width: 250px;
+			/* Minimum width */
+			margin-left: -125px;
+			/* Center the toast */
+			background-color: #333;
+			/* Black background */
+			color: #fff;
+			/* White text */
+			text-align: center;
+			/* Centered text */
+			border-radius: 2px;
+			/* Rounded corners */
+			padding: 16px;
+			/* Padding */
+			position: fixed;
+			/* Sit on top */
+			z-index: 1;
+			/* Sit on top */
+			left: 50%;
+			/* Center the toast */
+			bottom: 30px;
+			/* Position the toast */
+			font-size: 17px;
+			/* Font size */
+		}
+
+		.toast.show {
+			visibility: visible;
+			/* Show the toast */
+			animation: fadein 0.5s, fadeout 0.5s 4.5s;
+			/* Fade in and out */
+		}
+
+		@keyframes fadein {
+			from {
+				bottom: 0;
+				opacity: 0;
+			}
+
+			/* Initial state */
+			to {
+				bottom: 30px;
+				opacity: 1;
+			}
+
+			/* Final state */
+		}
+
+		@keyframes fadeout {
+			from {
+				bottom: 30px;
+				opacity: 1;
+			}
+
+			/* Initial state */
+			to {
+				bottom: 0;
+				opacity: 0;
+			}
+
+			/* Final state */
+		}
+	</style>
+</head>
+
+<body>
+	<div id="loading-wrapper">
+		<div class="spinner-border" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+	<header class="header">
+	</header>
+	<div class="screen-overlay"></div>
+	<div class="quick-settings-box">
+	</div>
+	<div class="container-fluid">
+		<nav class="navbar navbar-expand-lg custom-navbar">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bluemoonNavbar"
+				aria-controls="bluemoonNavbar" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon">
+				</span>
+			</button>
+			<div class="collapse navbar-collapse" id="bluemoonNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="dashboardsDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="icon-devices_other nav-icon"></i>
+							Dashboard
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="icon-package nav-icon"></i>
+							Manage Users
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="icon-book-open nav-icon"></i>
+							PLC Tag Mapping
+						</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link active-page dropdown-toggle" href="#" id="formsDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="icon-edit1 nav-icon"></i>
+							Forms
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="main-container">
+			<div class="page-header">
+				<ol class="breadcrumb">
+				</ol>
+
+				<ul class="app-actions">
+					<li>
+						<a href="#" id="reportrange">
+							<span class="range-text"></span>
+							<i class="icon-chevron-down"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print">
+							<i class="icon-print"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="tooltip" data-placement="top" title=""
+							data-original-title="Download CSV">
+							<i class="icon-cloud_download"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="content-wrapper">
+				<div class="row gutters">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+						<div id="example-form">
+							<h3>Page 1</h3>
+							<section>
+								<table class="table table-bordered">
+
+									<tr style="background-color: #FFD700;">
+										<td colspan="6" style="text-align: center;">Akash 200 Technology</td>
+									</tr>
+									<tr>
+										<td>Date: <div style="position: relative; display: inline-block;width: 100%;">
+												<input type="text" class="form-control" style="padding-right: 30px;" />
+												<span class="badge badge-light" onclick="copyId(event)"
+													style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+													i
+												</span>
+											</div>
+										</td>
+										<td>Responsible operator: <div
+												style="position: relative; display: inline-block;width: 100%;">
+												<input type="text" class="form-control" style="padding-right: 30px;" />
+												<span class="badge badge-light" onclick="copyId(event)"
+													style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+													i
+												</span>
+											</div>
+										</td>
+										<td>M/C No.: <div
+												style="position: relative; display: inline-block;width: 100%;">
+												<input type="text" class="form-control" style="padding-right: 30px;" />
+												<span class="badge badge-light" onclick="copyId(event)"
+													style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+													i
+												</span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>Julian date: <input class="form-control" type="text">
+										</td>
+										<td>Plant code: <div
+												style="position: relative; display: inline-block;width: 100%;">
+												<input type="text" class="form-control" style="padding-right: 30px;" />
+												<span class="badge badge-light" onclick="copyId(event)"
+													style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+													i
+												</span>
+											</div>
+										</td>
+										<td>Shift: <div style="position: relative; display: inline-block;width: 100%;">
+												<input type="text" class="form-control" style="padding-right: 30px;" />
+												<span class="badge badge-light" onclick="copyId(event)"
+													style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+													i
+												</span>
+											</div>
+										</td>
+										<td>Team:<div style="position: relative; display: inline-block;width: 100%;">
+												<input type="text" class="form-control" style="padding-right: 30px;" />
+												<span class="badge badge-light" onclick="copyId(event)"
+													style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+													i
+												</span>
+											</div>
+										</td>
+										<td>Brand code: <div
+												style="position: relative; display: inline-block;width: 100%;">
+												<input type="text" class="form-control" style="padding-right: 30px;" />
+												<span class="badge badge-light" onclick="copyId(event)"
+													style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+													i
+												</span>
+											</div>
+										</td>
+										<td>SKU: <div style="position: relative; display: inline-block;width: 100%;">
+												<input type="text" class="form-control" style="padding-right: 30px;" />
+												<span class="badge badge-light" onclick="copyId(event)"
+													style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+													i
+												</span>
+											</div>
+										</td>
+									</tr>
+								</table>
+
+							</section>
+							<h3>Page 2</h3>
+							<section>
+
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th rowspan="2">
+												Weighing Balance Daily Verification<br>(to be checked in 2nd shift or
+												Once a Day)
+											</th>
+											<th colspan="2">Standalone</th>
+											<th colspan="2">Anritsu</th>
+											<th colspan="2">Secondary CW</th>
+										</tr>
+										<tr>
+											<th>Lower Range</th>
+											<th>Higher Range</th>
+											<th>Lower Range</th>
+											<th>Higher Range</th>
+											<th>Lower Range</th>
+											<th>Higher Range</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Standard Weight</td>
+											<td>
+												<div style="position: relative; display: inline-block;width: 100%;">
+													<input type="text" class="form-control"
+														style="padding-right: 30px;" />
+													<span class="badge badge-light" onclick="copyId(event)"
+														style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+														i
+													</span>
+												</div>
+											</td>
+											<td>
+												<div style="position: relative; display: inline-block;width: 100%;">
+													<input type="text" class="form-control"
+														style="padding-right: 30px;" />
+													<span class="badge badge-light" onclick="copyId(event)"
+														style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+														i
+													</span>
+												</div>
+											</td>
+											<td>
+												<div style="position: relative; display: inline-block;width: 100%;">
+													<input type="text" class="form-control"
+														style="padding-right: 30px;" />
+													<span class="badge badge-light" onclick="copyId(event)"
+														style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+														i
+													</span>
+												</div>
+											</td>
+											<td>
+												<div style="position: relative; display: inline-block;width: 100%;">
+													<input type="text" class="form-control"
+														style="padding-right: 30px;" />
+													<span class="badge badge-light" onclick="copyId(event)"
+														style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+														i
+													</span>
+												</div>
+											</td>
+											<td>
+												<div style="position: relative; display: inline-block;width: 100%;">
+													<input type="text" class="form-control"
+														style="padding-right: 30px;" />
+													<span class="badge badge-light" onclick="copyId(event)"
+														style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+														i
+													</span>
+												</div>
+											</td>
+											<td>
+												<div style="position: relative; display: inline-block;width: 100%;">
+													<input type="text" class="form-control"
+														style="padding-right: 30px;" />
+													<span class="badge badge-light" onclick="copyId(event)"
+														style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+														i
+													</span>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td>Weight Limit</td>
+											<td><input type="text" class="form-control" value="493gm - 501gm (±1gm)" />
+											</td>
+											<td><input type="text" class="form-control"
+													value="1939gm - 2001gm (±1gm)" /></td>
+											<td><input type="text" class="form-control" value="493gm - 501gm (±1gm)" />
+											</td>
+											<td><input type="text" class="form-control"
+													value="1939gm - 2001gm (±1gm)" /></td>
+											<td><input type="text" class="form-control"
+													value="19.98kg - 20.02kg (±20gm)" /></td>
+											<td><input type="text" class="form-control"
+													value="29.98kg - 30.02kg (±20gm)" /></td>
+										</tr>
+										<tr class="highlight">
+											<td>Observed Value (in gm)</td>
+											<td>
+												<div style="position: relative; display: inline-block;width: 100%;">
+													<input type="text" class="form-control"
+														style="padding-right: 30px;" />
+													<span class="badge badge-light" onclick="copyId(event)"
+														style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+														i
+													</span>
+												</div>
+											</td>
+											<td>
+												<div style="position: relative; display: inline-block;width: 100%;">
+													<input type="text" class="form-control"
+														style="padding-right: 30px;" />
+													<span class="badge badge-light" onclick="copyId(event)"
+														style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+														i
+													</span>
+												</div>
+											</td>
+											<td>
+												<div style="position: relative; display: inline-block;width: 100%;">
+													<input type="text" class="form-control"
+														style="padding-right: 30px;" />
+													<span class="badge badge-light" onclick="copyId(event)"
+														style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+														i
+													</span>
+												</div>
+											</td>
+											<td>
+												<div style="position: relative; display: inline-block;width: 100%;">
+													<input type="text" class="form-control"
+														style="padding-right: 30px;" />
+													<span class="badge badge-light" onclick="copyId(event)"
+														style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+														i
+													</span>
+												</div>
+											</td>
+											<td>
+												<div style="position: relative; display: inline-block;width: 100%;">
+													<input type="text" class="form-control"
+														style="padding-right: 30px;" />
+													<span class="badge badge-light" onclick="copyId(event)"
+														style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+														i
+													</span>
+												</div>
+											</td>
+											<td>
+												<div style="position: relative; display: inline-block;width: 100%;">
+													<input type="text" class="form-control"
+														style="padding-right: 30px;" />
+													<span class="badge badge-light" onclick="copyId(event)"
+														style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+														i
+													</span>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+							</section>
+							<h3>Page 3</h3>
+							<section class="overflow-auto">
+								<table class="table table-bordered table-responsive">
+									<thead>
+										<tr>
+											<th>S. No.</th>
+											<th>Q-Task</th>
+											<th>Target</th>
+											<th>Observed Value/Data</th>
+											<th>Status (Pass/Fail)</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>Anritsu is rejecting the Low/High weight pouch</td>
+											<td>Anritsu should reject any low/high weight pouch passed through it</td>
+											<td class="yellow">
+												<table class="table">
+													<tr>
+														<td>Running SKU Weight Limit in Anritsu:</td>
+													</tr>
+													<tr>
+														<td>LCL: <div
+																style="position: relative; display: inline-block;width: 100%;">
+																<input type="text" class="form-control"
+																	style="padding-right: 30px;" />
+																<span class="badge badge-light" onclick="copyId(event)"
+																	style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																	i
+																</span>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td>USL: <div
+																style="position: relative; display: inline-block;width: 100%;">
+																<input type="text" class="form-control"
+																	style="padding-right: 30px;" />
+																<span class="badge badge-light" onclick="copyId(event)"
+																	style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																	i
+																</span>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td><strong>Weight Passed while IFT Test:</strong></td>
+													</tr>
+													<tr>
+														<td>Low Weight: <div
+																style="position: relative; display: inline-block;width: 100%;">
+																<input type="text" class="form-control"
+																	style="padding-right: 30px;" />
+																<span class="badge badge-light" onclick="copyId(event)"
+																	style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																	i
+																</span>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td>High Weight: <div
+																style="position: relative; display: inline-block;width: 100%;">
+																<input type="text" class="form-control"
+																	style="padding-right: 30px;" />
+																<span class="badge badge-light" onclick="copyId(event)"
+																	style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																	i
+																</span>
+															</div>
+														</td>
+													</tr>
+												</table>
+											</td>
+											<td class="blue"></td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td>2D Laminate Barcode Active or not</td>
+											<td>2D bar code system should scan the code, verify from HMI</td>
+											<td class="yellow">
+												<table style="width:100%; border: none;">
+													<tr>
+														<td>GCAS as per control copy:</td>
+													</tr>
+													<tr>
+														<td>
+															<div
+																style="position: relative; display: inline-block;width: 100%;">
+																<input type="text" class="form-control"
+																	style="padding-right: 30px;" />
+																<span class="badge badge-light" onclick="copyId(event)"
+																	style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																	i
+																</span>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td>Actual GCAS (Dataman Result):</td>
+													</tr>
+													<tr>
+														<td>
+															<div
+																style="position: relative; display: inline-block;width: 100%;">
+																<input type="text" class="form-control"
+																	style="padding-right: 30px;" />
+																<span class="badge badge-light" onclick="copyId(event)"
+																	style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																	i
+																</span>
+															</div>
+														</td>
+													</tr>
+												</table>
+											</td>
+											<td class="blue"></td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td>Secondary checkweigher on/off test</td>
+											<td>Checkweigher should stop when any low/high weight bags on CW. And Alarm
+												should be in HMI.</td>
+											<td class="yellow">
+												<table style="width:100%; border: none;">
+													<tr>
+														<td>Running SKU Weight Limit in Sec CW:</td>
+													</tr>
+													<tr>
+														<td>LCL: <div
+																style="position: relative; display: inline-block;width: 100%;">
+																<input type="text" class="form-control"
+																	style="padding-right: 30px;" />
+																<span class="badge badge-light" onclick="copyId(event)"
+																	style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																	i
+																</span>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td>USL: <div
+																style="position: relative; display: inline-block;width: 100%;">
+																<input type="text" class="form-control"
+																	style="padding-right: 30px;" />
+																<span class="badge badge-light" onclick="copyId(event)"
+																	style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																	i
+																</span>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td><strong>Weight Passed while IFT Test:</strong></td>
+													</tr>
+													<tr>
+														<td>Low Weight: <div
+																style="position: relative; display: inline-block;width: 100%;">
+																<input type="text" class="form-control"
+																	style="padding-right: 30px;" />
+																<span class="badge badge-light" onclick="copyId(event)"
+																	style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																	i
+																</span>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td>High Weight: <div
+																style="position: relative; display: inline-block;width: 100%;">
+																<input type="text" class="form-control"
+																	style="padding-right: 30px;" />
+																<span class="badge badge-light" onclick="copyId(event)"
+																	style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																	i
+																</span>
+															</div>
+														</td>
+													</tr>
+												</table>
+											</td>
+											<td class="blue"></td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td>2D Polybag Barcode Active or not</td>
+											<td>Verify 2D is active and Verify Polybag GCAS vs Dataman Result from HMI.
+											</td>
+											<td class="yellow">
+												<table style="width:100%; border: none;">
+													<tr>
+														<td>GCAS as per control copy:</td>
+													</tr>
+													<tr>
+														<td>
+															<div
+																style="position: relative; display: inline-block;width: 100%;">
+																<input type="text" class="form-control"
+																	style="padding-right: 30px;" />
+																<span class="badge badge-light" onclick="copyId(event)"
+																	style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																	i
+																</span>
+															</div>
+														</td>
+													</tr>
+													<tr>
+														<td>Actual GCAS (Dataman Result):</td>
+													</tr>
+													<tr>
+														<td>
+															<div
+																style="position: relative; display: inline-block;width: 100%;">
+																<input type="text" class="form-control"
+																	style="padding-right: 30px;" />
+																<span class="badge badge-light" onclick="copyId(event)"
+																	style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																	i
+																</span>
+															</div>
+														</td>
+													</tr>
+												</table>
+											</td>
+											<td class="blue"></td>
+										</tr>
+									</tbody>
+								</table>
+							</section>
+							<h3>Page 4</h3>
+							<section class="overflow-auto">
+								<div class="row">
+									<div class="col-lg-1"></div>
+									<div class="col-lg-10">
+
+										<table class="table table-bordered table-responsive">
+											<tr>
+												<th>Note Complete Primary printing (1st Half):</th>
+												<th>Primary Printing Character Height in mm (1st Half)</th>
+												<th>Note Complete Primary printing (2nd Half):</th>
+												<th>Primary Printing Character Height in mm (2nd Half)</th>
+											</tr>
+											<tr>
+												<td>
+													<div style="position: relative; display: inline-block;width: 100%;">
+														<input type="text" class="form-control"
+															style="padding-right: 30px;" />
+														<span class="badge badge-light" onclick="copyId(event)"
+															style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+															i
+														</span>
+													</div>
+
+												</td>
+												<td>
+													<div style="position: relative; display: inline-block;width: 100%;">
+														<input type="text" class="form-control"
+															style="padding-right: 30px;" />
+														<span class="badge badge-light" onclick="copyId(event)"
+															style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+															i
+														</span>
+													</div>
+												</td>
+												<td>
+													<div style="position: relative; display: inline-block;width: 100%;">
+														<input type="text" class="form-control"
+															style="padding-right: 30px;" />
+														<span class="badge badge-light" onclick="copyId(event)"
+															style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+															i
+														</span>
+													</div>
+													<div style="position: relative; display: inline-block;width: 100%;">
+														<input type="text" class="form-control"
+															style="padding-right: 30px;" />
+														<span class="badge badge-light" onclick="copyId(event)"
+															style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+															i
+														</span>
+													</div>
+												</td>
+												<td>
+													<div style="position: relative; display: inline-block;width: 100%;">
+														<input type="text" class="form-control"
+															style="padding-right: 30px;" />
+														<span class="badge badge-light" onclick="copyId(event)"
+															style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+															i
+														</span>
+													</div>
+												</td>
+											</tr>
+											<tr class="gray-bg">
+												<td colspan="4">
+													* Once in every 4 hrs note complete primary printing from the pouch
+													(**Primary Printing height should be ≥ 4MM**).<br>
+													* If any power on/off, Printer change fill the TAMU once machine
+													started.<br>
+													* Once in every 4 hrs note complete secondary printing from Bag
+													(**Secondary
+													Printing height should be legible and traceable**).<br>
+													* If any power on/off, Printer change fill the TAMU once machine
+													started.
+												</td>
+											</tr>
+											<tr>
+												<td colspan="2">Note Complete Secondary printing
+													(1st half):</td>
+												<td colspan="2">Note Complete Secondary printing
+													(2nd half):</td>
+											</tr>
+											<tr>
+												<td colspan="2">
+													<div style="position: relative; display: inline-block;width: 100%;">
+														<input type="text" class="form-control"
+															style="padding-right: 30px;" />
+														<span class="badge badge-light" onclick="copyId(event)"
+															style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+															i
+														</span>
+													</div>
+												</td>
+												<td colspan="2">
+													<div style="position: relative; display: inline-block;width: 100%;">
+														<input type="text" class="form-control"
+															style="padding-right: 30px;" />
+														<span class="badge badge-light" onclick="copyId(event)"
+															style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+															i
+														</span>
+													</div>
+												</td>
+											</tr>
+										</table>
+									</div>
+									<div class="col-lg-1"></div>
+								</div>
+							</section>
+							<h3>Page 5</h3>
+							<section class="overflow-auto">
+								<div class="row" style="justify-content: center;">
+									<div class="col-lg-6">
+										<table class="table table-bordered table-responsive">
+											<thead>
+												<tr>
+													<th colspan="2" style="text-align: center;">Check Anritsu check
+														weigher v/s stand alone check weigher
+														weight (± 1gm) (To be checked in Every Shift)</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td style="width: 50%;">
+														<div
+															style="position: relative; display: inline-block;width: 100%;">
+															<input type="text" class="form-control"
+																style="padding-right: 30px;" />
+															<span class="badge badge-light" onclick="copyId(event)"
+																style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																i
+															</span>
+														</div>
+													</td>
+													<td style="width: 50%; text-align: center;">Pouch weight (in gm)
+													</td>
+												</tr>
+												<tr>
+													<td style="text-align: center;">Anritsu weight</td>
+													<td>
+														<div
+															style="position: relative; display: inline-block;width: 100%;">
+															<input type="text" class="form-control"
+																style="padding-right: 30px;" />
+															<span class="badge badge-light" onclick="copyId(event)"
+																style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																i
+															</span>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<td style="text-align: center;">Standalone Weight</td>
+													<td>
+														<div
+															style="position: relative; display: inline-block;width: 100%;">
+															<input type="text" class="form-control"
+																style="padding-right: 30px;" />
+															<span class="badge badge-light" onclick="copyId(event)"
+																style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																i
+															</span>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</section>
+							<h3>Page 6</h3>
+							<section class="overflow-auto">
+								<div class="row" style="justify-content: center;">
+									<div class="col-lg-3">
+										<table class="table table-bordered table-responsive">
+											<thead>
+												<tr>
+													<th colspan="2" style="text-align: center;">Write Data from Anristu
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td style="width: 50%;">
+														<div
+															style="position: relative; display: inline-block;width: 100%;">
+															<input type="text" class="form-control"
+																style="padding-right: 30px;" />
+															<span class="badge badge-light" onclick="copyId(event)"
+																style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																i
+															</span>
+														</div>
+													</td>
+													<td style="width: 50%; text-align: center;">Total pouches </td>
+												</tr>
+												<tr>
+													<td style="width: 50%;">
+														<div
+															style="position: relative; display: inline-block;width: 100%;">
+															<input type="text" class="form-control"
+																style="padding-right: 30px;" />
+															<span class="badge badge-light" onclick="copyId(event)"
+																style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																i
+															</span>
+														</div>
+													</td>
+													<td style="width: 50%; text-align: center;">Total pouches </td>
+												</tr>
+												<tr>
+													<td style="width: 50%;">
+														<div
+															style="position: relative; display: inline-block;width: 100%;">
+															<input type="text" class="form-control"
+																style="padding-right: 30px;" />
+															<span class="badge badge-light" onclick="copyId(event)"
+																style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																i
+															</span>
+														</div>
+													</td>
+													<td style="width: 50%; text-align: center;">Negative </td>
+												</tr>
+												<tr>
+													<td style="width: 50%;">
+														<div
+															style="position: relative; display: inline-block;width: 100%;">
+															<input type="text" class="form-control"
+																style="padding-right: 30px;" />
+															<span class="badge badge-light" onclick="copyId(event)"
+																style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																i
+															</span>
+														</div>
+													</td>
+													<td style="width: 50%; text-align: center;">Positive</td>
+												</tr>
+												<tr>
+													<td style="width: 50%;">
+														<div
+															style="position: relative; display: inline-block;width: 100%;">
+															<input type="text" class="form-control"
+																style="padding-right: 30px;" />
+															<span class="badge badge-light" onclick="copyId(event)"
+																style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																i
+															</span>
+														</div>
+													</td>
+													<td style="width: 50%; text-align: center;">XP</td>
+												</tr>
+												<tr>
+													<td style="width: 50%;">
+														<div
+															style="position: relative; display: inline-block;width: 100%;">
+															<input type="text" class="form-control"
+																style="padding-right: 30px;" />
+															<span class="badge badge-light" onclick="copyId(event)"
+																style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+																i
+															</span>
+														</div>
+													</td>
+													<td style="width: 50%; text-align: center;">S</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div id="toast" class="toast">Notification</div>
+	<script>
+		window.onload = assignSequentialIds;
+
+
+		function assignSequentialIds() {
+			// Select all input elements with class 'form-control'
+			const textboxes = document.querySelectorAll('input.form-control');
+
+			// Loop through and assign IDs sequentially
+			textboxes.forEach((textbox, index) => {
+				textbox.id = 'textbox-' + (index + 1); // Sequential IDs like textbox-1, textbox-2, etc.
+			});
+		}
+
+		function showToast(message) {
+			const toast = document.getElementById('toast');
+			toast.textContent = message; // Set toast message
+			toast.className = 'toast show'; // Show the toast
+			setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000); // Hide after 3 seconds
+		}
+
+		function copyId(event) {
+			// Find the associated input (previous sibling of the span)
+			const inputElement = event.target.previousElementSibling;
+
+			if (inputElement && inputElement.id) {
+				// Focus the document to ensure the clipboard API works
+				document.activeElement.blur(); // Remove focus from any active element
+				inputElement.focus(); // Focus on the input element
+				showToast('ID: ' + inputElement.id); // Success notification
+			} else {
+				showToast('No ID found on the input element.');
+			}
+		}
+	</script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="js/moment.js"></script>
+	<script src="vendor/slimscroll/slimscroll.min.js"></script>
+	<script src="vendor/slimscroll/custom-scrollbar.js"></script>
+	<script src="vendor/daterange/daterange.js"></script>
+	<script src="vendor/daterange/custom-daterange.js"></script>
+	<script src="vendor/wizard/jquery.steps.min.js"></script>
+	<script src="vendor/wizard/jquery.steps.custom.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
+<!-- Mirrored from bootstrap.gallery/bluemoon-v6/main_files/dashboards/wizard.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 02 Aug 2020 18:27:05 GMT -->
+
+</html>
